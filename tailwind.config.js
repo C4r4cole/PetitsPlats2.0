@@ -4,6 +4,13 @@ module.exports = {
   theme: {
     colors: {
       yellow: "#FFD15B",
+      grey: "#E5E5E5",
+      grey2: "#7A7A7A",
+      white: "#FFFFFF",
+    },
+    fontFamily: {
+      anton: "Anton",
+      manrope: "Manrope",
     },
     extend: {},
   },
