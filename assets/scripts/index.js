@@ -1,9 +1,19 @@
-console.log(recipes);
+import {recipes} from "./recipes.js";
+
+const ingredients = [];
+const appareilsTable = [];
+const ustensilesTable = [];
+
 
 function displayIngredient(ingredientsTable, ingredientsGrid){
     
     for (let i=0; i<ingredientsTable.length; i++){
         const ingredient = ingredientsTable[i];
+
+        if (!ingredients.includes(ingredient.ingredient)){
+            ingredients.push(ingredient.ingredient);
+        }
+
         const ingredientCard = document.createElement("div");
 
         const ingredientName = document.createElement("h4");
@@ -87,9 +97,69 @@ function displayRecipe(){
         
         
         recipesGrid.appendChild(card);
+
+        if (!appareilsTable.includes(recipes[i].appliance)){
+            appareilsTable.push(recipes[i].appliance);
+        }
+
+        // if (!appareilsTable.includes(recipe.appliance)){
+        //     appareilsTable.push(recipe.appliance);
+        // }
     }
 }
 
 displayRecipe();
 
 
+function getDropdownElementsById(id){
+    const wrapper = document.getElementById(id);
+    const input = wrapper.querySelector("input");
+    const list = wrapper.querySelector("ul");
+    return {wrapper, input, list};
+}
+
+const ingredientElements = getDropdownElementsById("ingredients");
+const appareilsElements = getDropdownElementsById("appareils");
+const ustensilesElements = getDropdownElementsById("ustensiles");
+
+
+    ingredientElements.input.addEventListener("input", (e)=>{
+        filterBy(ingredients, ingredientElements.list, e.target.value);
+    })
+    appareilsElements.input.addEventListener("input", (e)=>{
+        filterBy(appareilsTable, appareilsElements.list, e.target.value);
+    })
+    ustensilesElements.input.addEventListener("input", (e)=>{
+        filterBy(ustensilesTable, ustensilesElements.list, e.target.value);
+    })
+
+
+    function filterBy(list, element, userInput){
+        const finalList = [];
+        for(const element of list){
+            if (element.startsWith(userInput)){
+                finalList.push(element);
+            }
+        }
+        addDropdownElements(element, finalList);
+    }
+
+
+function addDropdownElements(parentElement, elements){
+    parentElement.innerHTML = "";
+    for (const element of elements){
+        const li = document.createElement("li");
+        li.textContent = element;
+        parentElement.appendChild(li);
+    }
+}
+
+addDropdownElements(ingredientElements.list, ingredients);
+addDropdownElements(appareilsElements.list, appareilsTable);
+addDropdownElements(ustensilesElements.list, ustensilesTable);
+
+
+
+// setTimeout(() => {
+//     addDropdownElements(dropdownIngredientsList, []);
+// }, 3000);

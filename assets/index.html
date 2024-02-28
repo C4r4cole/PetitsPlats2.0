@@ -54,27 +54,87 @@
       <div class="nav-bar w-full h-auto bg-grey px-32 py-5">
         <div class="main-nav flex justify-between">
           <div class="nav-left w-1/2 flex justify-between">
-            <select
-              class="mx-1 pl-2 pr-8 py-2 rounded-md"
-              name="ingredients"
-              id="ingredients-select"
+            <div
+              id="ingredients"
+              class="mx-1 dropdown-wrapper bg-white rounded-md w-full h-8 relative group"
             >
-              <option value="">Ingrédients</option>
-            </select>
-            <select
-              class="mx-1 pl-2 pr-8 py-2 rounded-md"
-              name="appareils"
-              id="appareils-select"
+              <div
+                class="dropdown-btn px-3 h-8 w-full flex items-center justify-between"
+                tabindex="0"
+              >
+                <div>Ingrédients</div>
+                <div>^</div>
+              </div>
+              <div
+                class="dropdown-menu px-3 overflow-auto bg-white h-60 top-8 inset-x-0 absolute hidden group-focus-within:block"
+              >
+                <input class="border-gray-500 border w-full" type="text" />
+                <ul></ul>
+              </div>
+            </div>
+            <div
+              id="appareils"
+              class="mx-1 dropdown-wrapper bg-white rounded-md w-full h-8 relative group"
             >
-              <option value="">Appareils</option>
-            </select>
-            <select
-              class="mx-1 pl-2 pr-8 py-2 rounded-md"
-              name="ustensiles"
-              id="ustensiles-select"
+              <div
+                class="dropdown-btn px-3 h-8 w-full flex items-center justify-between"
+                tabindex="0"
+              >
+                <div>Appareils</div>
+                <div>^</div>
+              </div>
+              <div
+                class="dropdown-menu px-3 overflow-auto bg-white h-60 top-8 inset-x-0 absolute hidden group-focus-within:block"
+              >
+                <input class="border-gray-500 border w-full" type="text" />
+                <ul></ul>
+              </div>
+            </div>
+            <div
+              id="ustensiles"
+              class="mx-1 dropdown-wrapper bg-white rounded-md w-full h-8 relative group"
             >
-              <option value="">Ustensiles</option>
-            </select>
+              <div
+                class="dropdown-btn px-3 h-8 w-full flex items-center justify-between"
+                tabindex="0"
+              >
+                <div>Ustensiles</div>
+                <div>^</div>
+              </div>
+              <div
+                class="dropdown-menu px-3 overflow-auto bg-white h-60 top-8 inset-x-0 absolute hidden group-focus-within:block"
+              >
+                <input class="border-gray-500 border w-full" type="text" />
+                <ul></ul>
+              </div>
+            </div>
+            <!-- <div class="mx-1">
+              <input
+                class="pl-2 pr-8 py-2 rounded-md"
+                name="ingredients"
+                id="ingredients-select"
+              >
+              </input>
+              <div class="w-full h-60 border bg-white rounded-md absolute hidden"></div>
+            </div>
+            <div class="mx-1">
+              <input
+                class="pl-2 pr-8 py-2 rounded-md"
+                name="appareils"
+                id="appareils-select"
+              >
+              </input>
+              <div class="w-full h-60 border bg-white rounded-md absolute hidden"></div>
+            </div>
+            <div class="mx-1">
+              <input
+                class="pl-2 pr-8 py-2 rounded-md"
+                name="ustensiles"
+                id="ustensiles-select"
+              >
+              </input>
+              <div class="w-full h-60 border bg-white rounded-md absolute hidden"></div>
+            </div> -->
           </div>
           <div class="nav-right">
             <p class="uppercase font-anton font-semibold align-baseline">
@@ -87,7 +147,6 @@
         class="grid-content grid grid-cols-3 gap-x-10 gap-y-20 w-full bg-grey px-32 py-5"
       ></div>
     </main>
-    <script src="./scripts/recipes.js"></script>
-    <script src="./scripts/index.js"></script>
+    <script src="./scripts/index.js" type="module"></script>
   </body>
 </html>
