@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Les petits plats</title>
     <link rel="stylesheet" href="./style/tailwind.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -56,55 +60,55 @@
           <div class="nav-left w-1/2 flex justify-between">
             <div
               id="ingredients"
-              class="mx-1 dropdown-wrapper bg-white rounded-md w-full h-8 relative group"
+              class="mx-1 dropdown-wrapper bg-white rounded-md w-full h-fit relative group"
             >
               <div
-                class="dropdown-btn px-3 h-8 w-full flex items-center justify-between"
+                class="font-medium text-lg py-5 cursor-pointer dropdown-btn px-3 h-fit w-full flex items-center justify-between"
                 tabindex="0"
               >
                 <div>Ingrédients</div>
                 <div>^</div>
               </div>
               <div
-                class="dropdown-menu px-3 overflow-auto bg-white h-60 top-8 inset-x-0 absolute hidden group-focus-within:block"
+                class="dropdown-menu px-3 overflow-auto bg-white h-60 top-18 inset-x-0 absolute hidden group-focus-within:block"
               >
-                <input class="border-gray-500 border w-full" type="text" />
+                <input class="mb-5 border-gray-500 border w-full" type="text" />
                 <ul></ul>
               </div>
             </div>
             <div
               id="appareils"
-              class="mx-1 dropdown-wrapper bg-white rounded-md w-full h-8 relative group"
+              class="mx-1 dropdown-wrapper bg-white rounded-md w-full h-fit relative group"
             >
               <div
-                class="dropdown-btn px-3 h-8 w-full flex items-center justify-between"
+                class="font-medium text-lg py-5 cursor-pointer dropdown-btn px-3 h-fit w-full flex items-center justify-between"
                 tabindex="0"
               >
                 <div>Appareils</div>
                 <div>^</div>
               </div>
               <div
-                class="dropdown-menu px-3 overflow-auto bg-white h-60 top-8 inset-x-0 absolute hidden group-focus-within:block"
+                class="dropdown-menu px-3 overflow-auto bg-white h-60 top-18 inset-x-0 absolute hidden group-focus-within:block"
               >
-                <input class="border-gray-500 border w-full" type="text" />
+                <input class="mb-5 border-gray-500 border w-full" type="text" />
                 <ul></ul>
               </div>
             </div>
             <div
               id="ustensiles"
-              class="mx-1 dropdown-wrapper bg-white rounded-md w-full h-8 relative group"
+              class="mx-1 dropdown-wrapper bg-white rounded-md w-full h-fit relative group"
             >
               <div
-                class="dropdown-btn px-3 h-8 w-full flex items-center justify-between"
+                class="font-medium text-lg py-5 cursor-pointer dropdown-btn px-3 h-fit w-full flex items-center justify-between"
                 tabindex="0"
               >
                 <div>Ustensiles</div>
                 <div>^</div>
               </div>
               <div
-                class="dropdown-menu px-3 overflow-auto bg-white h-60 top-8 inset-x-0 absolute hidden group-focus-within:block"
+                class="dropdown-menu px-3 overflow-auto bg-white h-60 top-18 inset-x-0 absolute hidden group-focus-within:block"
               >
-                <input class="border-gray-500 border w-full" type="text" />
+                <input class="mb-5 border-gray-500 border w-full" type="text" />
                 <ul></ul>
               </div>
             </div>
@@ -138,7 +142,7 @@
           </div>
           <div class="nav-right">
             <p class="uppercase font-anton font-semibold align-baseline">
-              1500 recettes
+              <span id="recipe-nb"></span> recettes
             </p>
           </div>
         </div>
