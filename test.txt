@@ -1,6 +1,0 @@
-faire une fonction qui fait :
-clear tout ce qui est dans le dropdown
-rajouter tous les nouveaux ingrédients
-
-Dans notre eventlistener :
-faire une comparaison pour recréer le tableau d'ingrédients filtrés
