@@ -1,0 +1,36 @@
+Recherche globale des recettes par
+    titre
+    ingredient
+    description
+
+Si 3 caractères min
+eventlistener keyup
+    si - de 3 caractère return
+    définir variable avec résultat de la Recherche
+    créer un tableau vide
+    const element of tableau recettes
+        si titre inclus variable resultat Recherche
+            ajouter recette en faisant un push
+        sinon si description inclus variable resultat Recherche
+            ajouter recette en faisant un push
+        sinon
+            const element of ingredient
+                si element inclus variable resultat Recherche
+                    ajouter recette en faisant un push
+                    break
+    vide le DOM
+    Ajoute notre nouveau tableau au DOM
+    mettre à jour le nombre de recettes affichées
+
+
+
+Recherche spécifique par
+    ingredients
+    Appareils
+    Ustensiles
+
+
+Avoir 3 listes
+La liste complète
+la liste filtrée en fonction de la première Recherche
+la liste filtrée sur chacun des filtre en fonction de la seconde liste

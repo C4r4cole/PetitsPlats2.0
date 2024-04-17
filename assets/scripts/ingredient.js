@@ -1,5 +1,10 @@
-export function createIngredientName(element) {
+export function createIngredientCard(){
+    const ingredientCard = document.createElement("div");
 
+    return ingredientCard;
+}
+
+export function createIngredientName(element) {
     const ingredientName = document.createElement("h4");
 
     ingredientName.textContent = element.ingredient;
