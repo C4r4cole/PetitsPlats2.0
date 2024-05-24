@@ -1,7 +1,7 @@
 import { recipes as RECIPES } from './recipes.js';
 import { displayAllDropdownElements } from './main-structure/dropdown-elements.js';
 import { displayRecipe } from './main-structure/display-recipes.js';
-import { manageInputsLogic } from './algo-iteratif/main-input-algo.js';
+import { manageInputsLogic } from './init-algo.js';
 
 function main() {
 	displayRecipe(RECIPES);

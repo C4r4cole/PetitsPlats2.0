@@ -11,12 +11,12 @@ function pushWithoutDuplicates(dropDownTable, string) {
 
 export function fillDefaultTable(recipe) {
 	for (const { ingredient } of recipe.ingredients) {
-		pushWithoutDuplicates(INGREDIENTS, ingredient);
+		pushWithoutDuplicates(INGREDIENTS.list, ingredient);
 	}
 
-	pushWithoutDuplicates(APPAREILS, recipe.appliance);
+	pushWithoutDuplicates(APPAREILS.list, recipe.appliance);
 
 	for (const ustensil of recipe.ustensils) {
-		pushWithoutDuplicates(USTENSILES, ustensil);
+		pushWithoutDuplicates(USTENSILES.list, ustensil);
 	}
 }

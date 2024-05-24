@@ -23,11 +23,19 @@ eventlistener keyup
     mettre à jour le nombre de recettes affichées
 
 
-
 Recherche spécifique par
     ingredients
     Appareils
     Ustensiles
+
+Si on clique sur un des li du dropdownElement ingredient
+    le supprimer du dropdownElement
+    faire un appendChild à la div qui contient l'input dans le dropdownElement
+    récupérer la valeur du li sur lequel on a cliqué et le stocker dans une variable
+     créer un tableau vide
+     const element of tableau sortedTableMainInput
+        si ingredient de sortedTableMainInput === element sur lequel on a cliqué stocké précédemment dans la variable
+            ajouter recette au nouveau tableau en faisant un push
 
 
 Avoir 3 listes

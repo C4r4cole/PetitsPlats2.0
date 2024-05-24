@@ -1,4 +1,4 @@
-import { clearRecipe } from './global-var.js';
+import { clearRecipe } from './clear-recipe.js';
 import { displayIngredient } from './ingredient.js';
 import { fillDefaultTable } from './main-table.js';
 import { insertRecipeCard } from './recipe-card.js';
