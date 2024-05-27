@@ -1,22 +1,18 @@
 import { recipes as RECIPES } from '../recipes.js';
 import { displayRecipe } from '../main-structure/display-recipes.js';
-import { displayAllDropdownElements } from '../main-structure/dropdown-elements.js';
+import { addDropdownElements, displayAllDropdownElements } from '../main-structure/dropdown-elements.js';
 import { APPAREILS, INGREDIENTS, MAIN_INPUT, USTENSILES } from '../main-structure/global-var.js';
 
 export function filterAllRecipes() {
 	const searchResult = MAIN_INPUT.toLowerCase();
 
-	// if (e.key === 'Backspace' && searchResult.length === 2) {
-	// 	displayRecipe(RECIPES);
-	// 	addDropdownElements(INGREDIENTS, INGREDIENTS.list);
-	// 	addDropdownElements(APPAREILS, APPAREILS.list);
-	// 	addDropdownElements(USTENSILES, USTENSILES.list);
-	// 	return;
-	// }
-
-	// if (searchResult.length < 3) {
-	// 	return;
-	// }
+	if (searchResult.length < 3) {
+		displayRecipe(RECIPES);
+		addDropdownElements(INGREDIENTS, INGREDIENTS.list);
+		addDropdownElements(APPAREILS, APPAREILS.list);
+		addDropdownElements(USTENSILES, USTENSILES.list);
+		return;
+	}
 
 	const main = RECIPES.filter(recipe => {
 		const recipeName = recipe.name.toLowerCase();
