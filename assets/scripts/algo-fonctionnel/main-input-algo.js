@@ -1,23 +1,15 @@
 import { recipes as RECIPES } from '../recipes.js';
 import { displayRecipe } from '../main-structure/display-recipes.js';
-import { addDropdownElements, displayAllDropdownElements } from '../main-structure/dropdown-elements.js';
+import { displayAllDropdownElements } from '../main-structure/dropdown-elements.js';
 import { APPAREILS, INGREDIENTS, MAIN_INPUT, USTENSILES } from '../main-structure/global-var.js';
 
 export function filterAllRecipes() {
 	const searchResult = MAIN_INPUT.toLowerCase();
 
-	if (searchResult.length < 3) {
-		displayRecipe(RECIPES);
-		addDropdownElements(INGREDIENTS, INGREDIENTS.list);
-		addDropdownElements(APPAREILS, APPAREILS.list);
-		addDropdownElements(USTENSILES, USTENSILES.list);
-		return;
-	}
-
 	const main = RECIPES.filter(recipe => {
 		const recipeName = recipe.name.toLowerCase();
 		const recipeDescription = recipe.description.toLowerCase();
-		if (recipeName.includes(searchResult) || recipeDescription.includes(searchResult)) {
+		if (searchResult.length < 3 || recipeName.includes(searchResult) || recipeDescription.includes(searchResult)) {
 			return true;
 		}
 

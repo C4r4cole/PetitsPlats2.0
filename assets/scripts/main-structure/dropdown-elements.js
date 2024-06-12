@@ -1,7 +1,5 @@
-import { displayRecipe } from './display-recipes.js';
-import { APPAREILS, INGREDIENTS, USTENSILES } from './global-var.js';
+import { APPAREILS, INGREDIENTS, MAIN_INPUT, USTENSILES } from './global-var.js';
 import { filterAllRecipes } from '../algo-fonctionnel/main-input-algo.js';
-import { recipes as RECIPES } from '../recipes.js';
 
 export function getDropdownElementsById(id) {
 	const wrapper = document.getElementById(id);
@@ -15,7 +13,7 @@ export function filterBy(ELEMENT, userInput) {
 	const finalList = [];
 
 	for (const element of ELEMENT.list) {
-		if (element.toLowerCase().startsWith(userInput.toLowerCase())) {
+		if (element.toLowerCase().includes(userInput.toLowerCase())) {
 			finalList.push(element);
 		}
 	}
@@ -26,7 +24,7 @@ function createLi(element) {
 	const li = document.createElement('li');
 
 	li.textContent = element;
-	li.classList.add('my-2.5', 'hover:bg-yellow', 'px-3', 'cursor-pointer');
+	li.classList.add('py-3', 'hover:bg-yellow', 'px-3', 'cursor-pointer');
 	li.setAttribute('tabindex', '1');
 
 	return li;
@@ -41,7 +39,9 @@ function createSelectedElement(li) {
 		'bg-yellow',
 		'pr-2',
 		'rounded-full',
-		'mb-1'
+		'mb-1',
+		'w-40',
+		'mr-1'
 	);
 
 	const dupSelectedLi = li.cloneNode(true);
@@ -57,46 +57,52 @@ function createSelectedElement(li) {
 	return { selectedElementWrapper, dupSelectedLi, crossElement };
 }
 
-function removeSelectedElement(crossElement, selectedElement) {
+export function removeSelectedElement(crossElement, selectedElements) {
 	const selectedLi = crossElement.parentElement.firstChild.textContent;
-	const selectedLiIndex = selectedElement.indexOf(selectedLi);
+	const selectedLiIndex = selectedElements.indexOf(selectedLi);
 
-	selectedElement.splice(selectedLiIndex, 1);
+	selectedElements.splice(selectedLiIndex, 1);
 
 	crossElement.parentElement.remove();
 	filterAllRecipes();
 }
 
-function addSelectedElement(selectedLi, selectedElement, domWrapper, selectedElementWrapper, dupSelectedLi) {
-	selectedElement.push(selectedLi.textContent);
+export function addSelectedElement(selectedLi, selectedElements, domWrapper, selectedElementWrapper, dupSelectedLi) {
+	const choosen = document.getElementById('choosen');
+
+	selectedElements.push(selectedLi.textContent);
 
 	filterAllRecipes();
 
-	domWrapper.appendChild(selectedElementWrapper);
+	choosen.appendChild(selectedElementWrapper);
 	dupSelectedLi.focus();
 }
 
 export function addDropdownElements(ELEMENT, list) {
 	const { list: ul, inputWrapper: domWrapper } = ELEMENT.dom;
-	const selectedElement = ELEMENT.selected;
+	const selectedElements = ELEMENT.selected;
 
 	ul.innerHTML = '';
 
 	for (const element of list) {
-		if (selectedElement.includes(element)) {
-			continue;
-		}
+		// if (selectedElements.includes(element)) {
+		// 	continue;
+		// }
 
 		const li = createLi(element);
+
+		if (selectedElements.includes(element)) {
+			li.classList.add('bg-yellow');
+		}
 
 		const { selectedElementWrapper, dupSelectedLi, crossElement } = createSelectedElement(li);
 
 		crossElement.addEventListener('mouseup', e => {
-			removeSelectedElement(e.target, selectedElement);
+			removeSelectedElement(e.target, selectedElements);
 		});
 
 		li.addEventListener('mouseup', e => {
-			addSelectedElement(e.target, selectedElement, domWrapper, selectedElementWrapper, dupSelectedLi);
+			addSelectedElement(e.target, selectedElements, domWrapper, selectedElementWrapper, dupSelectedLi);
 		});
 		ul.appendChild(li);
 	}

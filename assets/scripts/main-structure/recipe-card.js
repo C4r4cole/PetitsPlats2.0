@@ -48,6 +48,15 @@ function createTitleElement(name) {
 	return title;
 }
 
+function createTimeElement(time) {
+	const timeDiv = document.createElement('div');
+
+	timeDiv.textContent = time + ' min';
+	timeDiv.classList.add('font-manrope', 'bg-yellow', 'px-2', 'z-50', 'rounded-md', 'w-fit');
+
+	return timeDiv;
+}
+
 function createRecetteSubtitle() {
 	const recette = document.createElement('h3');
 
@@ -81,6 +90,7 @@ export function insertRecipeCard(element) {
 	const recipesGrid = createRecipesGrid();
 	const recipeCard = createRecipeCard();
 	recipeCard.appendChild(createImgElement(element.image));
+	recipeCard.appendChild(createTimeElement(element.time));
 
 	const recipe = createRecipeDiv();
 

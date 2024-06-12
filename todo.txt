@@ -1,0 +1,4 @@
+Retrier les listes des dropdown menu en fonction de l'élément sélectionné dans ce dropdown
+ajouter l'élément sélectionné sur la homepage en dessous des dropdown menu au lieu de l'ajouter à l'intérieur du dropdown menu
+ajouter les timing des recettes en haut à droite des cards
+
