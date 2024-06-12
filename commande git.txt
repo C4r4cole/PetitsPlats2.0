@@ -3,4 +3,9 @@ pour voir sur quelle branche on est : git status
 pour faire un premier push sur une nouvelle branche : git push --set-upstream origin nom_nouvelle_branche
 pour se déplacer de branche en branche : git checkout nom_de_la_branche
 pour récupérer la branche qui est en ligne (et perdre toutes les modification locales) : git reset --hard
+<<<<<<< HEAD
 pour lister toutes les branches existantes : git branch
+=======
+pour lister toutes les branches existantes : git branch
+pour récupérer seulement un fichier (ou un dossier) d'une autre branche : git checkout nom_branche -- nom_du_fichier (ou nom_du_dossier)
+>>>>>>> b773f6dbfbdd549d8d7a4e5e79fa72c725685bda
