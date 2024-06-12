@@ -1,0 +1,6 @@
+pour créer une branche : git checkout -b nom_nouvelle_branche
+pour voir sur quelle branche on est : git status
+pour faire un premier push sur une nouvelle branche : git push --set-upstream origin nom_nouvelle_branche
+pour se déplacer de branche en branche : git checkout nom_de_la_branche
+pour récupérer la branche qui est en ligne (et perdre toutes les modification locales) : git reset --hard
+pour lister toutes les branches existantes : git branch
