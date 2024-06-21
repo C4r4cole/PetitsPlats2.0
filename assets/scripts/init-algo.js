@@ -1,5 +1,5 @@
 import { APPAREILS, INGREDIENTS, USTENSILES, updateMainInput } from './main-structure/global-var.js';
-import { filterAllRecipes } from './algo-fonctionnel/main-input-algo.js';
+import { filterAllRecipes } from './algo-iteratif/main-input-algo.js';
 import { filterBy } from './main-structure/dropdown-elements.js';
 
 export function manageInputsLogic() {

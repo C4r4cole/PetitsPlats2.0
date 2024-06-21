@@ -1,5 +1,5 @@
 import { APPAREILS, INGREDIENTS, MAIN_INPUT, USTENSILES } from './global-var.js';
-import { filterAllRecipes } from '../algo-fonctionnel/main-input-algo.js';
+import { filterAllRecipes } from '../algo-iteratif/main-input-algo.js';
 
 export function getDropdownElementsById(id) {
 	const wrapper = document.getElementById(id);

@@ -1,76 +1,85 @@
-import { displayRecipe } from '../main-structure/display-recipes.js';
-import {
-	addDropdownElements,
-	displayAllDropdownElements,
-	filterBy,
-	getDropdownElementsById
-} from '../main-structure/dropdown-elements.js';
-import { APPAREILS, INGREDIENTS, USTENSILES } from '../main-structure/global-var.js';
 import { recipes as RECIPES } from '../recipes.js';
+import { displayRecipe } from '../main-structure/display-recipes.js';
+import { displayAllDropdownElements } from '../main-structure/dropdown-elements.js';
+import { APPAREILS, INGREDIENTS, MAIN_INPUT, USTENSILES } from '../main-structure/global-var.js';
 
-export function manageInputsLogic() {
-	const mainInput = document.getElementById('site-search');
-	// const INGREDIENTS.dom = getDropdownElementsById('ingredients');
-	// const APPAREILS.dom = getDropdownElementsById('appareils');
-	// const USTENSILES.dom = getDropdownElementsById('ustensiles');
+export function filterAllRecipes() {
+	const searchResult = MAIN_INPUT.toLowerCase();
 
-	mainInput.addEventListener('keyup', e => {
-		const searchResult = e.target.value.toLowerCase();
-		const sortedTableMainInput = [];
-
-		if (e.key === 'Backspace' && searchResult.length === 2) {
-			displayRecipe(RECIPES);
-			displayAllDropdownElements();
-			return;
+	const main = [];
+	for (const recipe of RECIPES) {
+		const recipeName = recipe.name.toLowerCase();
+		const recipeDescription = recipe.description.toLowerCase();
+		if (searchResult.length < 3 || recipeName.includes(searchResult) || recipeDescription.includes(searchResult)) {
+			main.push(recipe);
+			continue;
 		}
 
-		if (searchResult.length < 3) {
-			return;
+		const ingredientTable = [];
+		for (const ingredient of recipe.ingredients) {
+			const ingredientName = ingredient.ingredient.toLowerCase();
+			if (ingredientName.includes(searchResult)) {
+				ingredientTable.push(ingredient);
+			}
 		}
 
-		for (const recipe of RECIPES) {
-			const recipeName = recipe.name.toLowerCase();
-			const recipeDescription = recipe.description.toLowerCase();
+		if (ingredientTable.length > 0) {
+			main.push(recipe);
+		}
+	}
 
-			if (recipeName.includes(searchResult)) {
-				sortedTableMainInput.push(recipe);
-			} else if (recipeDescription.includes(searchResult)) {
-				sortedTableMainInput.push(recipe);
-			} else {
-				for (const ingredient of recipe.ingredients) {
-					const ingredientName = ingredient.ingredient.toLowerCase();
-					if (ingredientName.includes(searchResult)) {
-						sortedTableMainInput.push(recipe);
-						break;
-					}
+	const mainAndIngredient = main.filter(recipe => {
+		const validIngredients = INGREDIENTS.selected;
+
+		let isAllValidIngredients = true;
+		for (const ingredient of validIngredients) {
+			let isIngredientInRecipe = false;
+			for (const element of recipe.ingredients) {
+				if (element.ingredient === ingredient) {
+					isIngredientInRecipe = true;
+					break;
 				}
 			}
+
+			if (!isIngredientInRecipe) {
+				isAllValidIngredients = false;
+				break;
+			}
 		}
-		displayRecipe(sortedTableMainInput);
 
-		displayAllDropdownElements();
+		return isAllValidIngredients;
 	});
 
-	const dropdownInputs = document.querySelectorAll('.dropdown-input');
+	const mainAndIngredientAndAppareils = mainAndIngredient.filter(recipe => {
+		const validAppareils = APPAREILS.selected;
 
-	dropdownInputs.forEach(dropdownInput => {
-		dropdownInput.addEventListener('keyup', e => {
-			const searchResult = e.target.value;
+		const isAllValidAppareils = validAppareils.every(appareil => recipe.appliance === appareil);
 
-			if (e.key === 'Backspace' && searchResult.length < 3) {
-				displayAllDropdownElements();
-				//todo : agir uniquement sur celui que l'on est en train de manipuler
-				return;
-			}
-
-			if (searchResult.length < 3) {
-				return;
-			}
-
-			filterBy(INGREDIENTS, e.target.value);
-			filterBy(APPAREILS, e.target.value);
-			filterBy(USTENSILES, e.target.value);
-			//todo : agir uniquement sur celui que l'on est en train de manipuler
-		});
+		return isAllValidAppareils;
 	});
+
+	const mainAndIngredientAndAppareilsAndUstensiles = mainAndIngredientAndAppareils.filter(recipe => {
+		const validUstensiles = USTENSILES.selected;
+
+		let isAllValidUstensiles = true;
+		for (const ustensile of validUstensiles) {
+			let isUstensileInRecipe = false;
+			for (const element of recipe.ustensils) {
+				if (element === ustensile) {
+					isUstensileInRecipe = true;
+					break;
+				}
+			}
+			if (!isUstensileInRecipe) {
+				isAllValidUstensiles = false;
+				break;
+			}
+		}
+		// validUstensiles.every(ustensile => recipe.ustensils.some(e => e === ustensile));
+
+		return isAllValidUstensiles;
+	});
+
+	displayRecipe(mainAndIngredientAndAppareilsAndUstensiles);
+	displayAllDropdownElements();
 }
