@@ -7,6 +7,7 @@ function main() {
 	displayRecipe(RECIPES);
 	displayAllDropdownElements();
 	manageInputsLogic();
+	console.log('hello world');
 }
 
 main();
