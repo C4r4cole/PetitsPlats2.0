@@ -16,7 +16,7 @@ function createIngredientGrid() {
 function createRecipeCard() {
 	const card = document.createElement('div');
 
-	card.classList.add('rounded-2xl', 'bg-white', 'h-[700px]');
+	card.classList.add('rounded-2xl', 'bg-white', 'h-[700px]', 'relative');
 
 	return card;
 }
@@ -52,7 +52,17 @@ function createTimeElement(time) {
 	const timeDiv = document.createElement('div');
 
 	timeDiv.textContent = time + ' min';
-	timeDiv.classList.add('font-manrope', 'bg-yellow', 'px-2', 'z-50', 'rounded-md', 'w-fit');
+	timeDiv.classList.add(
+		'font-manrope',
+		'bg-yellow',
+		'px-2',
+		'z-50',
+		'rounded-md',
+		'w-fit',
+		'absolute',
+		'top-5',
+		'right-5'
+	);
 
 	return timeDiv;
 }
