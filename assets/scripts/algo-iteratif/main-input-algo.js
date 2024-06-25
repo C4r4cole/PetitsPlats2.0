@@ -28,7 +28,8 @@ export function filterAllRecipes() {
 		}
 	}
 
-	const mainAndIngredient = main.filter(recipe => {
+	const mainAndIngredient = [];
+	for (const recipe of main) {
 		const validIngredients = INGREDIENTS.selected;
 
 		let isAllValidIngredients = true;
@@ -47,18 +48,30 @@ export function filterAllRecipes() {
 			}
 		}
 
-		return isAllValidIngredients;
-	});
+		if (isAllValidIngredients) {
+			mainAndIngredient.push(recipe);
+		}
+	}
 
-	const mainAndIngredientAndAppareils = mainAndIngredient.filter(recipe => {
+	const mainAndIngredientAndAppareils = [];
+	for (const recipe of mainAndIngredient) {
 		const validAppareils = APPAREILS.selected;
 
-		const isAllValidAppareils = validAppareils.every(appareil => recipe.appliance === appareil);
+		let isAllValidAppareils = true;
+		for (const appareil of validAppareils) {
+			if (recipe.appliance !== appareil) {
+				isAllValidAppareils = false;
+				break;
+			}
+		}
 
-		return isAllValidAppareils;
-	});
+		if (isAllValidAppareils) {
+			mainAndIngredientAndAppareils.push(recipe);
+		}
+	}
 
-	const mainAndIngredientAndAppareilsAndUstensiles = mainAndIngredientAndAppareils.filter(recipe => {
+	const mainAndIngredientAndAppareilsAndUstensiles = [];
+	for (const recipe of mainAndIngredientAndAppareils) {
 		const validUstensiles = USTENSILES.selected;
 
 		let isAllValidUstensiles = true;
@@ -77,9 +90,10 @@ export function filterAllRecipes() {
 		}
 		// validUstensiles.every(ustensile => recipe.ustensils.some(e => e === ustensile));
 
-		return isAllValidUstensiles;
-	});
-
+		if (isAllValidUstensiles) {
+			mainAndIngredientAndAppareilsAndUstensiles.push(recipe);
+		}
+	}
 	displayRecipe(mainAndIngredientAndAppareilsAndUstensiles);
 	displayAllDropdownElements();
 }
