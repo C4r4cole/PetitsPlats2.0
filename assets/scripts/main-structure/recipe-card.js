@@ -16,7 +16,7 @@ function createIngredientGrid() {
 function createRecipeCard() {
 	const card = document.createElement('div');
 
-	card.classList.add('rounded-2xl', 'bg-white', 'h-[700px]', 'relative');
+	card.classList.add('rounded-2xl', 'bg-white', 'h-[700px]', 'relative', 'isolate');
 
 	return card;
 }
